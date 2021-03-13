@@ -46,7 +46,7 @@ const CssTextField = withStyles({
 const useStyles = makeStyles((theme) => ({
   "@global": {
     body: {
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: "#282B30",
     },
   },
   paper: {
@@ -169,7 +169,7 @@ export default function SignIn({ match }) {
           )}
         </form>
       </div>
-      <Box mt={8}>
+      <Box mt={8} backgroundColor="#282B30">
         <Copyright />
       </Box>
     </Container>
