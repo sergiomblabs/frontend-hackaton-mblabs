@@ -11,9 +11,9 @@ import logo from "../../assets/logo.png";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="secondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://valeti.com/">
+      <Link color="secondary" href="http://mslabs.com.br/">
         HACKATON MBLABS -
       </Link>{" "}
       {new Date().getFullYear()}
@@ -23,21 +23,31 @@ function Copyright() {
 
 const CssTextField = withStyles({
   root: {
-    "& label.Mui-focused": {
-      color: "#604B89",
+    '& label.Mui-focused': {
+      color: '#604B89',
     },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "grey",
+    '& .MuiInput-underline': {
+      color: '#604B89',
+      borderBottomColor: '#604B89',
     },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "grey",
+    '& .MuiInputBase-input': {
+      color: '#FFF',
+    },
+    '& .MuiFilledInput-input': {
+      color: '#604B89',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
       },
-      "&:hover fieldset": {
-        borderColor: "#604B89",
+      '&:hover fieldset': {
+        borderColor: '#604B89',
       },
-      "&.Mui-focused fieldset": {
-        borderColor: "#604B89",
+      '&.Mui-focused fieldset': {
+        borderColor: '#604B89',
       },
     },
   },
@@ -66,14 +76,14 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     marginBottom: theme.spacing(2),
-    width: 150,
+    width: 350,
   },
   textField: {
     width: "100%",
     "& + & ": {
       marginTop: theme.spacing(2),
     },
-    color: theme.palette.text.white,
+    color: "#fff",
   },
 }));
 
@@ -113,10 +123,7 @@ export default function SignIn({ match }) {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <img alt="Logo Valeti" className={classes.logo} src={logo} />
-        <Typography component="h1" variant="h5">
-          Login Challenge Hackaton MBLABS
-        </Typography>
+        <img alt="Logo Lookout" className={classes.logo} src={logo} />
         <form className={classes.form} onSubmit={handleSubmit}>
           <CssTextField
             className={classes.margin}
@@ -128,6 +135,7 @@ export default function SignIn({ match }) {
             label="Digite seu e-mail cadastrado"
             name="email"
             onChange={(e) => setEmail(e.target.value)}
+            color="secondary"
           />
           <CssTextField
             className={classes.margin}
@@ -135,9 +143,9 @@ export default function SignIn({ match }) {
             margin="normal"
             required
             fullWidth
-            id="passwotd"
+            id="password"
             label="Digite sua senha"
-            name="passwotd"
+            name="password"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -169,7 +177,7 @@ export default function SignIn({ match }) {
           )}
         </form>
       </div>
-      <Box mt={8} backgroundColor="#282B30">
+      <Box mt={8}>
         <Copyright />
       </Box>
     </Container>
