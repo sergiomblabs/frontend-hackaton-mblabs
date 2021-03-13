@@ -13,7 +13,7 @@ import history from "../../../services/history";
 
 const useStyles = makeStyles({
   root: {
-    width: 380,
+    width: 360,
     backgroundColor: '#604B89',
     borderRadius: '30px'
   },

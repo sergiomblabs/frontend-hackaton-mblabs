@@ -3,9 +3,10 @@ import { Box, Container, CssBaseline } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 
 import {
-  MenuTab,
+  CardNews,
+  Copyright,
   Header,
-  Copyright
+  MenuTab,
 } from '../../components'; 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,35 +15,35 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#282B30",
     },
   },
-  logo: {
+  newsList: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
-    width: 250,
+    marginRight: theme.spacing(2),
+    width: 350,
+    height: 550,
+    backgroundColor: "#C4C4C4",
+    borderRadius: "10px",
+    overflow: 'auto'
   },
-  avatar: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-    marginLeft: theme.spacing(4),
-    width: 85,
-    heigth: '20px',
-    borderRadius: '50%',
-  }
 }));
 
 export default function News() {
   const [view, setView] = useState(0);
 
-  useStyles();
+  const classes = useStyles();
 
   return (
     <Container component="main">
       <CssBaseline />
       <Header />
 
-      {/* TODO - Listagem das novidades  */}
-
-      <Box>
-        <h1>Novidades</h1>
+      <Box className={classes.newsList}>
+        <CardNews />
+        <CardNews />
+        <CardNews />
+        <CardNews />
+        <CardNews />
+        <CardNews />
       </Box>
 
       <MenuTab view={view} setView={setView} />
