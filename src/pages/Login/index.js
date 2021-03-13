@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import ReactLoading from "react-loading";
 
-import { Button, Box, Container, CssBaseline, Link, TextField, Typography } from '@material-ui/core';
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { Button, Box, Container, CssBaseline, Link, Typography } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
+
+import { Input } from '../../components';
 
 import history from "../../services/history";
 import { login } from "../../services/Functions";
@@ -20,38 +22,6 @@ function Copyright() {
     </Typography>
   );
 }
-
-const CssTextField = withStyles({
-  root: {
-    '& label.Mui-focused': {
-      color: '#604B89',
-    },
-    '& .MuiInput-underline': {
-      color: '#604B89',
-      borderBottomColor: '#604B89',
-    },
-    '& .MuiInputBase-input': {
-      color: '#FFF',
-    },
-    '& .MuiFilledInput-input': {
-      color: '#604B89',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'white',
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'white',
-      },
-      '&:hover fieldset': {
-        borderColor: '#604B89',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: '#604B89',
-      },
-    },
-  },
-})(TextField);
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -125,7 +95,7 @@ export default function SignIn({ match }) {
       <div className={classes.paper}>
         <img alt="Logo Lookout" className={classes.logo} src={logo} />
         <form className={classes.form} onSubmit={handleSubmit}>
-          <CssTextField
+          <Input
             className={classes.margin}
             variant="outlined"
             margin="normal"
@@ -137,7 +107,7 @@ export default function SignIn({ match }) {
             onChange={(e) => setEmail(e.target.value)}
             color="secondary"
           />
-          <CssTextField
+          <Input
             className={classes.margin}
             variant="outlined"
             margin="normal"

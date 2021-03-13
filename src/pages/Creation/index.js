@@ -14,35 +14,58 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#282B30",
     },
   },
-  logo: {
-    marginTop: theme.spacing(2),
+  firstBoxStyle: {
+    marginTop: theme.spacing(8),
+    marginLeft: theme.spacing(1),
     marginBottom: theme.spacing(2),
-    width: 250,
+    backgroundColor: "#222222",
+    border: "1px solid",
+    borderWidth: 2,
+    borderColor: "#000000",
+    borderRadius: 20,
+    width: 330,
+    height: 140
   },
-  avatar: {
-    marginTop: theme.spacing(2),
+  boxStyle: {
+    marginLeft: theme.spacing(1),
     marginBottom: theme.spacing(2),
-    marginLeft: theme.spacing(4),
-    width: 85,
-    heigth: '20px',
-    borderRadius: '50%',
+    backgroundColor: "#222222",
+    border: "1px solid",
+    borderWidth: 2,
+    borderColor: "#000000",
+    borderRadius: 20,
+    width: 330,
+    height: 140
+  },
+  title: {
+    marginTop: theme.spacing(6),
+    color: "#FFFFFF",
+    textAlign: "center",
+    fontSize: 22,
+    fontWeight: 400
   }
 }));
 
 export default function Creation() {
   const [view, setView] = useState(3);
 
-  useStyles();
+  const classes = useStyles();
 
   return (
     <Container component="main">
       <CssBaseline />
       <Header />
 
-      {/* TODO - Listagem das opções de criação  */}
+      <Box className={classes.firstBoxStyle} onClick={() => {}}>
+        <h1 className={classes.title}>Novidade</h1>
+      </Box>
 
-      <Box>
-        <h1>Criação</h1>
+      <Box className={classes.boxStyle} onClick={() => {}}>
+        <h1 className={classes.title}>Comunicado</h1>
+      </Box>
+
+      <Box className={classes.boxStyle} onClick={() => {}}>
+        <h1 className={classes.title}>Canal de Comunicação</h1>
       </Box>
 
       <MenuTab view={view} setView={setView} />

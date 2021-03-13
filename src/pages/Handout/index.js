@@ -14,19 +14,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#282B30",
     },
   },
-  logo: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-    width: 250,
-  },
-  avatar: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-    marginLeft: theme.spacing(4),
-    width: 85,
-    heigth: '20px',
-    borderRadius: '50%',
-  }
 }));
 
 export default function Handout() {

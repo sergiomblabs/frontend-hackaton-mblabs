@@ -16,9 +16,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Channel() {
-  const [view, setView] = useState(1);
-
+export default function HandoutCreate() {
+  const [view, setView] = useState(2);
   useStyles();
 
   return (
@@ -26,11 +25,6 @@ export default function Channel() {
       <CssBaseline />
       <Header />
 
-      {/* TODO - Listagem das canais de comunicação  */}
-
-      <Box>
-        <h1>Canais de Comunicação</h1>
-      </Box>
 
       <MenuTab view={view} setView={setView} />
       <Box mt={8}>
