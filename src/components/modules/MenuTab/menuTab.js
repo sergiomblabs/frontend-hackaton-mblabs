@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -61,6 +62,7 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      color="secondary"
     >
       <MenuItem onClick={handleMenuClose}>Criar Comunicado</MenuItem>
       <MenuItem onClick={handleMenuClose}>Criar Canal de Comunicação</MenuItem>
@@ -70,7 +72,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" color="#282B30">
+      <AppBar position="static" color="primary">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
             Lookout
