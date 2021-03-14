@@ -11,16 +11,18 @@ import QueueIcon from '@material-ui/icons/Queue';
 
 import history from "../../../services/history";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: 360,
+    width: '93%',
     backgroundColor: '#604B89',
-    borderRadius: '30px'
+    borderRadius: '30px',
+    bottom: 5,
+    position: "fixed",
   },
   icons: {
     color: '#fff'
   }
-});
+}));
 
 
 export default function Menu({ view, setView }) {

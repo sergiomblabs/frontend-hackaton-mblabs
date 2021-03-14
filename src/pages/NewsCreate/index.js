@@ -52,8 +52,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function HandoutCreate() {
-  const [view, setView] = useState(2);
+export default function NewsCreate() {
+  const [view, setView] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [title, setTitle] = useState("");
@@ -113,7 +113,7 @@ export default function HandoutCreate() {
           onChange={(e) => setTitle(e.target.value)}
           color="secondary"
           value={title}
-          placeholder="Digite o título do comunicado"
+          placeholder="Digite o título da Novidade!"
         />
 
         <TextareaAutosize
@@ -121,8 +121,8 @@ export default function HandoutCreate() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rowsMax={60}
-          aria-label="descrição do comunicado"
-          placeholder="Descrição do comunicado"
+          aria-label="descrição da novidade"
+          placeholder="Descrição da novidade"
         />
 
         <Button
@@ -140,7 +140,7 @@ export default function HandoutCreate() {
               width={20}
             />
           )}
-          Criar Comunicado
+          Criar Novidade
         </Button>
 
         {error && (
@@ -149,7 +149,7 @@ export default function HandoutCreate() {
             variant="h6"
             style={{ color: "red", fontWeight: "900", fontSize: "12" }}
           >
-            Erro ao tentar criar o comunicado. Por favor, tente novamente!
+            Erro ao tentar criar a novidade. Por favor, tente novamente!
           </Typography>
         )}
       </form>

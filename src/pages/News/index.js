@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
     marginRight: theme.spacing(2),
-    width: 350,
+    width: '100%',
     height: 550,
     backgroundColor: "#C4C4C4",
     borderRadius: "10px",

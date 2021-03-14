@@ -57,7 +57,7 @@ export default function Creation() {
       <CssBaseline />
       <Header />
 
-      <Box className={classes.firstBoxStyle} onClick={() => {}}>
+      <Box className={classes.firstBoxStyle} onClick={() => { history.push("/news/create"); }}>
         <h1 className={classes.title}>Novidade</h1>
       </Box>
 

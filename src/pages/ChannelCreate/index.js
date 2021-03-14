@@ -95,7 +95,7 @@ const MenuProps = {
 };
 
 export default function ChannelCreate() {
-  const [view, setView] = useState(2);
+  const [view, setView] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [title, setTitle] = useState("");
@@ -210,7 +210,7 @@ export default function ChannelCreate() {
             variant="h6"
             style={{ color: "red", fontWeight: "900", fontSize: "12" }}
           >
-            Erro ao realizar seu login. Por favor, tente novamente!
+            Erro ao tentar criar canal. Por favor, tente novamente!
           </Typography>
         )}
       </form>
