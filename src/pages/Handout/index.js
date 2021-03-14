@@ -37,12 +37,12 @@ export default function Handout() {
       <Header />
 
       <Box className={classes.handoutList}>
-        <CardHandout />
-        <CardHandout />
-        <CardHandout />
-        <CardHandout />
-        <CardHandout />
-        <CardHandout />
+        <CardHandout item={{ fixed: true }} />
+        <CardHandout item={{ fixed: true }} />
+        <CardHandout item={{ fixed: false }} />
+        <CardHandout item={{ fixed: false }} />
+        <CardHandout item={{ fixed: false }} />
+        <CardHandout item={{ fixed: false }} />
       </Box>
 
       <MenuTab view={view} setView={setView} />

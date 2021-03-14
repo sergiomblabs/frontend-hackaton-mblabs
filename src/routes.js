@@ -9,6 +9,7 @@ import Channel from './pages/Channel';
 import ChannelCreate from './pages/ChannelCreate';
 import Handout from './pages/Handout';
 import HandoutCreate from './pages/HandoutCreate';
+import HandoutInfo from './pages/HandoutInfo';
 import Creation from './pages/Creation';
 
 export default function Routes() {
@@ -22,6 +23,7 @@ export default function Routes() {
       <Route path="/channel/create" exact component={ChannelCreate} />
       <Route path="/handout" exact component={Handout} />
       <Route path="/handout/create" exact component={HandoutCreate} />
+      <Route path="/handout/info" exact component={HandoutInfo} />
       <Route path="/creation" exact component={Creation} />
     </Switch>
   );

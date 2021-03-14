@@ -28,6 +28,20 @@ export const createHandout = data => {
     })
 }
 
+export const createHandoutComment = data => {
+    return api
+    .post('handoutComment', {
+        comment: data.comment,
+        idHandout: data.idHandout,
+    })
+    .then(res => {
+        return true
+    })
+    .catch(err => {
+        return false;
+    })
+}
+
 export const createChannel = data => {
     return api
     .post('channel', {
