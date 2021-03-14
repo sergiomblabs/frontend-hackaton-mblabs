@@ -67,9 +67,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1)
   },
-  copyright: {
-    margin: 100,
-  },
 }));
 
 export default function NewsInfo() {
@@ -100,7 +97,7 @@ export default function NewsInfo() {
         </Typography>
       </Box>
       <MenuTab view={view} setView={setView} />
-      <Box className={classes.copyright} mt={8}>
+      <Box mt={18}>
         <Copyright />
       </Box>
     </Container>

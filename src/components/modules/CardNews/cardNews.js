@@ -5,6 +5,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import './cardNews.css';
+import history from '../../../services/history'
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -68,7 +69,7 @@ export default function CardNews({ item }) {
           Título da novidade!
         </Typography>
       </Box>
-      <Box className={classes.cardStyle} onClick={() => console.log('teste de clique')}>
+      <Box className={classes.cardStyle} onClick={() => { history.push("/news/info"); }}>
         <Typography align="justify" className="line-clamp">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
         </Typography>

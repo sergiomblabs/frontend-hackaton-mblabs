@@ -43,7 +43,6 @@ export default function News() {
         <CardNews />
         <CardNews />
         <CardNews />
-        <CardNews />
       </Box>
 
       <MenuTab view={view} setView={setView} />
