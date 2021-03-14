@@ -7,6 +7,7 @@ import {
   Header,
   Copyright
 } from '../../components'; 
+import history from "../../services/history";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -60,7 +61,7 @@ export default function Creation() {
         <h1 className={classes.title}>Novidade</h1>
       </Box>
 
-      <Box className={classes.boxStyle} onClick={() => {}}>
+      <Box className={classes.boxStyle} onClick={() => { history.push("/handout/create"); }}>
         <h1 className={classes.title}>Comunicado</h1>
       </Box>
 

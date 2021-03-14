@@ -96,7 +96,6 @@ export default function SignIn({ match }) {
         <img alt="Logo Lookout" className={classes.logo} src={logo} />
         <form className={classes.form} onSubmit={handleSubmit}>
           <Input
-            className={classes.margin}
             variant="outlined"
             margin="normal"
             required
@@ -108,7 +107,6 @@ export default function SignIn({ match }) {
             color="secondary"
           />
           <Input
-            className={classes.margin}
             variant="outlined"
             margin="normal"
             required
@@ -129,7 +127,7 @@ export default function SignIn({ match }) {
             {loading && (
               <ReactLoading
                 type="spin"
-                color="#604B89"
+                color="#FFF"
                 height={20}
                 width={20}
               />
