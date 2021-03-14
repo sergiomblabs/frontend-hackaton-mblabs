@@ -62,7 +62,7 @@ export default function CardNews({ item }) {
       <Box className={classes.cardStyle} display="flex" onClick={() => { console.log('cliquei') }} >
         <img alt="Avatar" className={classes.avatar} src="https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-criador-de-avatar-masculino.jpg" />
         <Typography align="justify" className="line-clamp">
-          Comentário de alguém que viu esse comunicado 
+          {item.text}
         </Typography>
       </Box>
       <Box className={classes.dateBox}>

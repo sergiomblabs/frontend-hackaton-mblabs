@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import ReactLoading from "react-loading";
 import { 
   Box,
   Container, 
@@ -11,6 +14,8 @@ import {
   Header,
   MenuTab,
 } from '../../components'; 
+
+import { getNewsById } from '../../services/Functions';
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -71,31 +76,54 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewsInfo() {
   const [view, setView] = useState(0);
-
+  const [loadingData, setLoadingData] = useState(true);
+  const [news, setNews] = useState([]);
+  const { idNews } = useParams();
   const classes = useStyles();
+
+  useEffect(() => {
+    async function getInfos() {
+      const response = await getNewsById(idNews);
+      setNews(response);
+      setLoadingData(false);
+    }
+    getInfos();
+  }, []);
 
   return (
     <Container component="main">
       <CssBaseline />
       <Header />
-        <Box className={classes.titleBox}>
-          <Typography className={classes.text}>
-              Título da novidade!
-          </Typography>
-        </Box>
-      <Box className={classes.newsList}>
-        <Box className={classes.cardStyle}>
-          <Typography align="justify" className="complete-text">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem.
-          In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
-        </Typography>
-        </Box>
-      </Box>
-      <Box className={classes.dateBox}>
-        <Typography className={classes.text}>
-          13/03/2021 às 20:05:34
-        </Typography>
-      </Box>
+
+      {loadingData ? (
+        <ReactLoading
+          type="spin"
+          color="#FFF"
+          height={40}
+          width={40}
+        />
+      ) : (
+        <>
+          <Box className={classes.titleBox}>
+            <Typography className={classes.text}>
+              {news.title}
+            </Typography>
+          </Box>
+          <Box className={classes.newsList}>
+            <Box className={classes.cardStyle}>
+              <Typography align="justify" className="complete-text">
+              {news.description}
+            </Typography>
+            </Box>
+          </Box>
+          <Box className={classes.dateBox}>
+            <Typography className={classes.text}>
+              13/03/2021 às 20:05:34
+            </Typography>
+          </Box>
+        </>
+      )}
+
       <MenuTab view={view} setView={setView} />
       <Box mt={18}>
         <Copyright />

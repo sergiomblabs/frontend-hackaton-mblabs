@@ -26,9 +26,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(2),
     marginBottom: theme.spacing(1),
     color: "#FFF",
-    // whiteSpace: "nowrap",
-    // overflow: "hidden",
-    // textOverflow: "ellipsis"
   },
   titleBox: {
     marginLeft: theme.spacing(1),
@@ -66,12 +63,12 @@ export default function CardNews({ item }) {
     <>
       <Box className={classes.titleBox}>
         <Typography className={classes.text}>
-          Título da novidade!
+          {item?.title}
         </Typography>
       </Box>
-      <Box className={classes.cardStyle} onClick={() => { history.push("/news/info"); }}>
+      <Box className={classes.cardStyle} onClick={() => { history.push(`/news/info/${item.id}`); }}>
         <Typography align="justify" className="line-clamp">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          {item?.description}
         </Typography>
       </Box>
       <Box className={classes.dateBox}>

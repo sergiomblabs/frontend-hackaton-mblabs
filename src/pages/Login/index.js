@@ -67,8 +67,8 @@ export default function SignIn({ match }) {
   let disabled = true;
 
   if (
-    password === "" &&
-    email === "" 
+    password !== "" &&
+    email !== "" 
   ) {
     disabled = false;
   }
@@ -81,15 +81,15 @@ export default function SignIn({ match }) {
       email, password
     });
 
-    if (!request) {
-      setError(true);
+    if (request) {
+      await setHeaderToken(request.token);
+      window.localStorage.setItem('user', JSON.stringify(request.userSaved));
       setLoading(false);
+      history.push("/news");
     } 
 
-    await setHeaderToken(request.data.token);
-    window.localStorage.setItem('user', JSON.stringify(request.data));
+    setError(true);
     setLoading(false);
-    history.push("/home");
   };
 
   return (

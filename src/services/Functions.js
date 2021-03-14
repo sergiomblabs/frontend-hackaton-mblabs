@@ -3,13 +3,15 @@ import api from './api'
 export const login = data => {
     return api
     .post('auth/', {
-        token: data.token,
+        email: data.email,
         password: data.password,
     })
     .then(res => {
+        console.log(res);
         return res.data;
     })
     .catch(err => {
+        console.log(err);
         return false;
     })
 }
@@ -30,9 +32,9 @@ export const createHandout = data => {
 
 export const createHandoutComment = data => {
     return api
-    .post('handoutComment', {
-        comment: data.comment,
-        idHandout: data.idHandout,
+    .post('handout/create-comment', {
+        text: data.comment,
+        id_handout: data.idHandout,
     })
     .then(res => {
         return true
@@ -66,6 +68,50 @@ export const createFiles = data => {
     })
     .then(res => {
         return true
+    })
+    .catch(err => {
+        return false;
+    })
+}
+
+export const getNews = () => {
+    return api
+    .get('news')
+    .then(res => {
+        return res.data
+    })
+    .catch(err => {
+        return false;
+    })
+}
+
+export const getNewsById = (id) => {
+    return api
+    .get(`news/${id}`)
+    .then(res => {
+        return res.data
+    })
+    .catch(err => {
+        return false;
+    })
+}
+
+export const getHandouts = () => {
+    return api
+    .get('handout')
+    .then(res => {
+        return res.data
+    })
+    .catch(err => {
+        return false;
+    })
+}
+
+export const getHandoutById = (id) => {
+    return api
+    .get(`handout/${id}`)
+    .then(res => {
+        return res.data
     })
     .catch(err => {
         return false;

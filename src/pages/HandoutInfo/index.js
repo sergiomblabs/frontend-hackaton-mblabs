@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom'
 import ReactLoading from "react-loading";
 import { 
   Box,
@@ -19,7 +20,7 @@ import {
   CardHandoutComment,
 } from '../../components'; 
 
-import { createHandoutComment } from "../../services/Functions";
+import { createHandoutComment, getHandoutById } from "../../services/Functions";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -91,6 +92,7 @@ export default function HandoutInfo() {
   const [handout, setHandout] = useState();
   const [handoutComments, setHandoutComments] = useState();
   const [comment, setComment] = useState("");
+  const { idHandout } = useParams();
   const classes = useStyles();
   let disabled = true;
 
@@ -100,40 +102,14 @@ export default function HandoutInfo() {
 
   useEffect( () => {
     async function getInfo() {
-      setHandout({
-        id: '1231231231231',
-        title: 'Título do comunicado',
-        description: 'Descrição do comunicado, que vai ser algúem falando algo!',
-        fixed: false
-      });
-
-      setHandoutComments([
-      {
-          userName: 'Sérgio',
-          userAvatar: '',
-          comment: 'Comentando algo nesse comunicado'
-        },
-        {
-          userName: 'Lohan',
-          userAvatar: '',
-          comment: 'Comentando algo nesse comunicado'
-        },
-        {
-          userName: 'Ciro',
-          userAvatar: '',
-          comment: 'Comentando algo nesse comunicado'
-        },
-        {
-          userName: 'Porta',
-          userAvatar: '',
-          comment: 'Comentando algo nesse comunicado'
-        }
-      ]);
+      const response = await getHandoutById(idHandout);
+      setHandout(response[0]);
+      setHandoutComments(response[0].comments);
       setLoadingData(false);
     }
 
     getInfo();
-  }, []);
+  }, [idHandout]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -148,8 +124,10 @@ export default function HandoutInfo() {
       setLoading(false);
     }
 
+    const response = await getHandoutById(idHandout);
+    setHandoutComments(response[0].comments);
+    setComment("");
     setLoading(false);
-    window.location.reload();
   };
 
 
@@ -176,9 +154,15 @@ export default function HandoutInfo() {
 
             <Typography className={classes.handoutTitle2}>Comentários</Typography>
             <Box className={classes.handoutCommentList}>
-              {handoutComments.map(item => {
-                return <CardHandoutComment />
-              })}
+              {handoutComments?.length > 0 ? (
+                <>
+                  {handoutComments?.map(item => {
+                    return <CardHandoutComment key={item.id} item={item} />
+                  })}
+                </>
+              ) : (
+                <Typography className={classes.handoutTitle2}>sem comentários no momento</Typography>
+              )}
             </Box>
           </div>
 
