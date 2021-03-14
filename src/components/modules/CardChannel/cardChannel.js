@@ -4,7 +4,6 @@ import {
   Typography,
 } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
-import './cardNews.css';
 import history from '../../../services/history'
 
 const useStyles = makeStyles((theme) => ({
@@ -26,9 +25,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(2),
     marginBottom: theme.spacing(1),
     color: "#FFF",
-    // whiteSpace: "nowrap",
-    // overflow: "hidden",
-    // textOverflow: "ellipsis"
   },
   titleBox: {
     marginLeft: theme.spacing(1),

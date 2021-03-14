@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
     width: '100%',
     height: 550,
-    backgroundColor: "#C4C4C4",
     borderRadius: "10px",
     overflow: 'auto'
   },

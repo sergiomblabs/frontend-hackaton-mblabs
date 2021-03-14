@@ -1,4 +1,4 @@
 export { default as CardNews } from './CardNews';
 export { default as CardHandout } from './CardHandout';
 export { default as MenuTab } from './MenuTab';
-export { default as CardChannel} from './cardChannel';
+export { default as CardChannel} from './CardChannel';
