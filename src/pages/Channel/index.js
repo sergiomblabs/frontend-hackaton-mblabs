@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ReactLoading from "react-loading";
 import { Box, Container, CssBaseline } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -8,6 +9,7 @@ import {
   Copyright
 } from '../../components'; 
 
+import { getChannels } from '../../services/Functions';
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -40,25 +42,39 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Channel() {
   const [view, setView] = useState(1);
+  const [loadingData, setLoadingData] = useState(true);
+  const [channels, setChannels] = useState([]);
   const classes = useStyles();
+
+  useEffect(() => {
+    async function getInfos() {
+      const response = await getChannels();
+      console.log(response);
+      setChannels(response);
+      setLoadingData(false);
+    }
+    getInfos();
+  }, []);
 
   return (
     <Container component="main">
       <CssBaseline />
       <Header />
 
-      <Box>
-        <h1>Canais de Comunicação</h1>
-      </Box>
-      <Box className={classes.newsList}>
-        <CardChannel />
-        <CardChannel />
-        <CardChannel />
-        <CardChannel />
-        <CardChannel />
-      </Box>
-
-
+      {loadingData ? (
+        <ReactLoading
+          type="spin"
+          color="#FFF"
+          height={40}
+          width={40}
+        />
+      ) : (
+        <Box className={classes.newsList}>
+          {channels?.map(item => {
+            return <CardChannel item={item} />
+          })}
+        </Box>
+      )}
 
       <MenuTab view={view} setView={setView} />
       <Box mt={8}>

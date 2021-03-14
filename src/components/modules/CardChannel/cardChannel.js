@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   cardStyle: {
     marginLeft: theme.spacing(1),
     width: '95%',
-    height: 80,
+    height: 120,
     backgroundColor: "#222222",
     borderRadius: "5px",
     paddingLeft: '10px',
@@ -51,12 +51,12 @@ export default function CardChannel({ item }) {
     <>
       <Box className={classes.titleBox}>
         <Typography className={classes.text}>
-          Título do Canal!
+          {item.channels.title}
         </Typography>
       </Box>
       <Box className={classes.cardStyle} onClick={() => { history.push("/news/info"); }}>
         <Typography align="justify" className="line-clamp">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          {item.channels.description}
         </Typography>
       </Box>
     </>
