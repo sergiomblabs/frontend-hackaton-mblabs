@@ -65,7 +65,7 @@ export default function Creation() {
         <h1 className={classes.title}>Comunicado</h1>
       </Box>
 
-      <Box className={classes.boxStyle} onClick={() => {}}>
+      <Box className={classes.boxStyle} onClick={() => { history.push("/channel/create"); }}>
         <h1 className={classes.title}>Canal de Comunicação</h1>
       </Box>
 

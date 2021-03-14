@@ -27,3 +27,18 @@ export const createHandout = data => {
         return false;
     })
 }
+
+export const createChannel = data => {
+    return api
+    .post('channel', {
+        title: data.title,
+        description: data.description,
+        users: data.users
+    })
+    .then(res => {
+        return true
+    })
+    .catch(err => {
+        return false;
+    })
+}
