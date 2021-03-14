@@ -8,6 +8,7 @@ import { Input } from '../../components';
 
 import history from "../../services/history";
 import { login } from "../../services/Functions";
+import setHeaderToken from "../../utils/setHeaderToken";
 
 import logo from "../../assets/logo.png";
 
@@ -83,8 +84,10 @@ export default function SignIn({ match }) {
     if (!request) {
       setError(true);
       setLoading(false);
-    }
+    } 
 
+    await setHeaderToken(request.data.token);
+    window.localStorage.setItem('user', JSON.stringify(request.data));
     setLoading(false);
     history.push("/home");
   };

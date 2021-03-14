@@ -41,17 +41,18 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(2),
     backgroundColor: "#CDCDCD",
     width: '75%',
-    height: 26,
+    height: 46,
     borderRadius: 30,
     zIndex: 999
   },
   submit: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(2),
     marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     backgroundColor: "#604B89",
     color: "#FFF",
     width: 15,
-    height: 30,
+    height: 45,
     borderRadius: '50%' 
   },
   handoutTitle: {
@@ -75,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
   textAreaBox: {
     marginTop: theme.spacing(3),
     width: '100%',
-    height: 50,
+    height: 80,
     backgroundColor: "#222222",
     borderRadius: 30,
     zIndex: 9
@@ -91,7 +92,7 @@ export default function HandoutInfo() {
   const [handoutComments, setHandoutComments] = useState();
   const [comment, setComment] = useState("");
   const classes = useStyles();
-  let disabled = false;
+  let disabled = true;
 
   if (comment !== "") {
     disabled = false;

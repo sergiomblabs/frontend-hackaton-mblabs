@@ -7,7 +7,7 @@ export const login = data => {
         password: data.password,
     })
     .then(res => {
-        return true
+        return res.data;
     })
     .catch(err => {
         return false;
