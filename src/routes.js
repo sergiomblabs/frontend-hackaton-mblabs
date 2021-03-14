@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Login from './pages/Login';
 import News from './pages/News';
+import NewsInfo from './pages/NewsInfo';
 import NewsCreate from './pages/NewsCreate';
 import Channel from './pages/Channel';
 import ChannelCreate from './pages/ChannelCreate';
@@ -15,6 +16,7 @@ export default function Routes() {
     <Switch>
       <Route path="/" exact component={Login} />
       <Route path="/news" exact component={News} />
+      <Route path="/news/info" exact component={NewsInfo} />
       <Route path="/news/create" exact component={NewsCreate} />
       <Route path="/channel" exact component={Channel} />
       <Route path="/channel/create" exact component={ChannelCreate} />
