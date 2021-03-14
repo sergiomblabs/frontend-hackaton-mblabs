@@ -5,7 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   MenuTab,
   Header,
-  Copyright
+  Copyright,
+  CardHandout
 } from '../../components'; 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,21 +15,34 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#282B30",
     },
   },
+  handoutList: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    width: '100%',
+    height: 550,
+    backgroundColor: "#C4C4C4",
+    borderRadius: "10px",
+    overflow: 'auto'
+  },
 }));
 
 export default function Handout() {
   const [view, setView] = useState(2);
-  useStyles();
+  const classes = useStyles();
 
   return (
     <Container component="main">
       <CssBaseline />
       <Header />
 
-      {/* TODO - Listagem dos comunicados  */}
-
-      <Box>
-        <h1>Comunicados</h1>
+      <Box className={classes.handoutList}>
+        <CardHandout />
+        <CardHandout />
+        <CardHandout />
+        <CardHandout />
+        <CardHandout />
+        <CardHandout />
       </Box>
 
       <MenuTab view={view} setView={setView} />
