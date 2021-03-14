@@ -127,7 +127,7 @@ export default function ChannelCreate() {
     }
 
     setLoading(false);
-    history.push("/handout");
+    history.push("/channel");
   };
 
   const handleChange = (event) => {

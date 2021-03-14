@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ReactLoading from "react-loading";
 import { 
   Box,
   Button,
-  Container, 
-  Checkbox, 
-  CssBaseline, 
-  FormControlLabel, 
+  Container,
+  CssBaseline,
   Input,
   TextareaAutosize,
   Typography
@@ -57,14 +55,15 @@ export default function NewsCreate() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [title, setTitle] = useState("");
-  const [fixed, setFixed] = useState(true);
+  const file = useRef();
   const [description, setDescription] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu eleifend lectus, in faucibus magna. Proin sollicitudin mi eu sem finibus lobortis. Phasellus nec mi condimentum, mattis odio ut, dignissim ipsum. Cras porttitor fringilla est, vitae convallis erat placerat eu. Cras non neque ullamcorper, eleifend lorem vel, bibendum ipsum. Maecenas viverra vestibulum est vitae porttitor. Donec eu ligula quis nibh hendrerit blandit. Vivamus orci mauris, sagittis vel purus eget, porta interdum arcu. Suspendisse dapibus varius tristique. Sed dignissim lectus vitae mauris semper condimentum. Aenean vitae felis sed nibh vehicula blandit. In hac habitasse platea dictumst. In hac habitasse platea dictumst. Integer quis nisl enim. Nunc varius congue justo, id dignissim lectus. Integer ornare vehicula volutpat. Aenean varius congue purus, et placerat lectus posuere quis. Donec finibus, orci a viverra porta, tortor sem convallis leo, eget rutrum diam neque eu nunc. Vestibulum quis porttitor eros, a gravida augue. Nulla vel maximus magna. Suspendisse gravida, sem efficitur egestas varius, dui leo condimentum ex, at dignissim tellus ante in justo.");
   const classes = useStyles();
   let disabled = true;
 
   if (
     title !== "" &&
-    description !== ""  
+    description !== "" &&
+    file.current.files[0].name !== "" 
   ) {
     disabled = false;
   }
@@ -74,7 +73,7 @@ export default function NewsCreate() {
     setLoading(true);
 
     const request = await createHandout({
-      title, description
+      title, description, file: file.current.files[0].name
     });
 
     if (!request) {
@@ -83,7 +82,7 @@ export default function NewsCreate() {
     }
 
     setLoading(false);
-    history.push("/handout");
+    history.push("/news");
   };
 
 
@@ -93,14 +92,7 @@ export default function NewsCreate() {
       <Header />
 
       <form className={classes.form} onSubmit={handleSubmit}>
-        <FormControlLabel
-          className={classes.input}
-          value={fixed}
-          control={<Checkbox className={classes.checkBox} />}
-          label="Comentário Importante"
-          labelPlacement="end"
-          onClick={() => { setFixed(!fixed)}}
-        />
+        <input style={{ color: '#FFF' }} type="file" ref={file} />
 
         <Input
           className={classes.input}

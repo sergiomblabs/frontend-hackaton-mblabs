@@ -42,3 +42,18 @@ export const createChannel = data => {
         return false;
     })
 }
+
+export const createFiles = data => {
+    return api
+    .post('channel', {
+        title: data.title,
+        description: data.description,
+        file: data.file
+    })
+    .then(res => {
+        return true
+    })
+    .catch(err => {
+        return false;
+    })
+}

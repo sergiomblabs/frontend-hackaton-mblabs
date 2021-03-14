@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     width: '93%',
     backgroundColor: '#604B89',
     borderRadius: '30px',
-    bottom: 5,
+    bottom: 10,
     position: "fixed",
   },
   icons: {
