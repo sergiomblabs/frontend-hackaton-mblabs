@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import ReactLoading from "react-loading";
+import { toast } from 'react-toastify';
 import { 
   Box,
   Button,
@@ -88,7 +89,6 @@ export default function HandoutInfo() {
   const [view, setView] = useState(2);
   const [loadingData, setLoadingData] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [handout, setHandout] = useState();
   const [handoutComments, setHandoutComments] = useState();
   const [comment, setComment] = useState("");
@@ -120,14 +120,15 @@ export default function HandoutInfo() {
     });
 
     if (!request) {
-      setError(true);
+      toast.error('Erro ao tentar criar comentário. Por favor, tente novamente!');
       setLoading(false);
+    } else {
+      const response = await getHandoutById(idHandout);
+      setHandoutComments(response[0].comments);
+      setComment("");
+      setLoading(false);
+      toast.success('Comentário criado com sucesso!');
     }
-
-    const response = await getHandoutById(idHandout);
-    setHandoutComments(response[0].comments);
-    setComment("");
-    setLoading(false);
   };
 
 
@@ -195,16 +196,6 @@ export default function HandoutInfo() {
             </Button>
           </Box>
         </>
-      )}
-      
-      {error && (
-        <Typography
-          component="h6"
-          variant="h6"
-          style={{ color: "red", fontWeight: "900", fontSize: "12" }}
-        >
-          Erro ao criar comentário. Por favor, tente novamente!
-        </Typography>
       )}
 
       <MenuTab view={view} setView={setView} />
