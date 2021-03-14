@@ -34,13 +34,15 @@ export default function Home() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    setUser(window.localStorage.getItem('user'));
+    const localItem = window.localStorage.getItem('user');
+    setUser(JSON.parse(localItem));
   }, []);
+
 
   return (
     <Box display="flex" className={classes.box}>
       <img alt="Logo Lookout" className={classes.logo} src={logo} />
-      <img alt="Avatar" className={classes.avatar} src={user?.avatar || "https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-criador-de-avatar-masculino.jpg"} />
+      <img alt="Avatar" className={classes.avatar} src={user.avatar} />
     </Box>
   );
 }

@@ -57,6 +57,10 @@ const useStyles = makeStyles((theme) => ({
 export default function CardNews({ item }) {
   const classes = useStyles();
 
+  const date = new Date(item.created_at);
+  const day = date.toLocaleDateString();
+  const time = date.toLocaleTimeString();
+
   return (
     <>
       <Box className={classes.cardStyle} display="flex">
@@ -67,7 +71,7 @@ export default function CardNews({ item }) {
       </Box>
       <Box className={classes.dateBox}>
         <Typography className={classes.text}>
-          13/03/2021 às 20:05:34
+          {day} - {time}
         </Typography>
       </Box>
     </>
