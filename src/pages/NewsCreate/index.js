@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import ReactLoading from "react-loading";
+import { toast } from 'react-toastify';
 import { 
   Box,
   Button,
@@ -7,7 +8,6 @@ import {
   CssBaseline,
   Input,
   TextareaAutosize,
-  Typography
 } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -18,7 +18,7 @@ import {
 } from '../../components'; 
 
 import history from "../../services/history";
-import { createHandout } from "../../services/Functions";
+import { createNews } from "../../services/Functions";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -53,17 +53,14 @@ const useStyles = makeStyles((theme) => ({
 export default function NewsCreate() {
   const [view, setView] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [title, setTitle] = useState("");
-  const file = useRef();
-  const [description, setDescription] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu eleifend lectus, in faucibus magna. Proin sollicitudin mi eu sem finibus lobortis. Phasellus nec mi condimentum, mattis odio ut, dignissim ipsum. Cras porttitor fringilla est, vitae convallis erat placerat eu. Cras non neque ullamcorper, eleifend lorem vel, bibendum ipsum. Maecenas viverra vestibulum est vitae porttitor. Donec eu ligula quis nibh hendrerit blandit. Vivamus orci mauris, sagittis vel purus eget, porta interdum arcu. Suspendisse dapibus varius tristique. Sed dignissim lectus vitae mauris semper condimentum. Aenean vitae felis sed nibh vehicula blandit. In hac habitasse platea dictumst. In hac habitasse platea dictumst. Integer quis nisl enim. Nunc varius congue justo, id dignissim lectus. Integer ornare vehicula volutpat. Aenean varius congue purus, et placerat lectus posuere quis. Donec finibus, orci a viverra porta, tortor sem convallis leo, eget rutrum diam neque eu nunc. Vestibulum quis porttitor eros, a gravida augue. Nulla vel maximus magna. Suspendisse gravida, sem efficitur egestas varius, dui leo condimentum ex, at dignissim tellus ante in justo.");
+  const [description, setDescription] = useState("");
   const classes = useStyles();
   let disabled = true;
 
   if (
     title !== "" &&
-    description !== "" &&
-    file.current.files[0].name !== "" 
+    description !== ""
   ) {
     disabled = false;
   }
@@ -72,17 +69,18 @@ export default function NewsCreate() {
     e.preventDefault();
     setLoading(true);
 
-    const request = await createHandout({
-      title, description, file: file.current.files[0].name
+    const request = await createNews({
+      title, description, file: ''
     });
 
-    if (!request) {
-      setError(true);
+    if (request) {
+      setLoading(false);
+      toast.success('Novidade criada com sucesso!');
+      history.push("/news");
+    } else {
+      toast.error('Erro ao tentar criar a novidade. Por favor, tente novamente!');
       setLoading(false);
     }
-
-    setLoading(false);
-    history.push("/news");
   };
 
 
@@ -92,8 +90,6 @@ export default function NewsCreate() {
       <Header />
 
       <form className={classes.form} onSubmit={handleSubmit}>
-        <input style={{ color: '#FFF' }} type="file" ref={file} />
-
         <Input
           className={classes.input}
           variant="outlined"
@@ -134,16 +130,6 @@ export default function NewsCreate() {
           )}
           Criar Novidade
         </Button>
-
-        {error && (
-          <Typography
-            component="h6"
-            variant="h6"
-            style={{ color: "red", fontWeight: "900", fontSize: "12" }}
-          >
-            Erro ao tentar criar a novidade. Por favor, tente novamente!
-          </Typography>
-        )}
       </form>
 
       <MenuTab view={view} setView={setView} />

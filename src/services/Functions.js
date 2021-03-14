@@ -7,11 +7,39 @@ export const login = data => {
         password: data.password,
     })
     .then(res => {
-        console.log(res);
         return res.data;
     })
     .catch(err => {
         console.log(err);
+        return false;
+    })
+}
+
+export const createNews = data => {
+    return api
+    .post('news', {
+        title: data.title,
+        description: data.description,
+    })
+    .then(res => {
+        return true;
+    })
+    .catch(err => {
+        return false;
+    })
+}
+
+export const createChannel = data => {
+    return api
+    .post('channel', {
+        title: data.title,
+        description: data.description,
+        users: data.users
+    })
+    .then(res => {
+        return true
+    })
+    .catch(err => {
         return false;
     })
 }
@@ -21,6 +49,7 @@ export const createHandout = data => {
     .post('handout', {
         title: data.title,
         description: data.description,
+        fixed: data.fixed
     })
     .then(res => {
         return true
@@ -35,21 +64,6 @@ export const createHandoutComment = data => {
     .post('handout/create-comment', {
         text: data.comment,
         id_handout: data.idHandout,
-    })
-    .then(res => {
-        return true
-    })
-    .catch(err => {
-        return false;
-    })
-}
-
-export const createChannel = data => {
-    return api
-    .post('channel', {
-        title: data.title,
-        description: data.description,
-        users: data.users
     })
     .then(res => {
         return true
@@ -110,6 +124,28 @@ export const getHandouts = () => {
 export const getHandoutById = (id) => {
     return api
     .get(`handout/${id}`)
+    .then(res => {
+        return res.data
+    })
+    .catch(err => {
+        return false;
+    })
+}
+
+export const getAllUsers = (id) => {
+    return api
+    .get(`user`)
+    .then(res => {
+        return res.data
+    })
+    .catch(err => {
+        return false;
+    })
+}
+
+export const getChannels = () => {
+    return api
+    .get('channel')
     .then(res => {
         return res.data
     })

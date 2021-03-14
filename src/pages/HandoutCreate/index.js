@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactLoading from "react-loading";
+import { toast } from 'react-toastify';
 import { 
   Box,
   Button,
@@ -9,7 +10,6 @@ import {
   FormControlLabel, 
   Input,
   TextareaAutosize,
-  Typography
 } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -55,10 +55,9 @@ const useStyles = makeStyles((theme) => ({
 export default function HandoutCreate() {
   const [view, setView] = useState(2);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [title, setTitle] = useState("");
   const [fixed, setFixed] = useState(true);
-  const [description, setDescription] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu eleifend lectus, in faucibus magna. Proin sollicitudin mi eu sem finibus lobortis. Phasellus nec mi condimentum, mattis odio ut, dignissim ipsum. Cras porttitor fringilla est, vitae convallis erat placerat eu. Cras non neque ullamcorper, eleifend lorem vel, bibendum ipsum. Maecenas viverra vestibulum est vitae porttitor. Donec eu ligula quis nibh hendrerit blandit. Vivamus orci mauris, sagittis vel purus eget, porta interdum arcu. Suspendisse dapibus varius tristique. Sed dignissim lectus vitae mauris semper condimentum. Aenean vitae felis sed nibh vehicula blandit. In hac habitasse platea dictumst. In hac habitasse platea dictumst. Integer quis nisl enim. Nunc varius congue justo, id dignissim lectus. Integer ornare vehicula volutpat. Aenean varius congue purus, et placerat lectus posuere quis. Donec finibus, orci a viverra porta, tortor sem convallis leo, eget rutrum diam neque eu nunc. Vestibulum quis porttitor eros, a gravida augue. Nulla vel maximus magna. Suspendisse gravida, sem efficitur egestas varius, dui leo condimentum ex, at dignissim tellus ante in justo.");
+  const [description, setDescription] = useState("");
   const classes = useStyles();
   let disabled = true;
 
@@ -74,16 +73,17 @@ export default function HandoutCreate() {
     setLoading(true);
 
     const request = await createHandout({
-      title, description
+      title, description, fixed
     });
 
-    if (!request) {
-      setError(true);
+    if (request) {
+      setLoading(false);
+      toast.success('Comunicado criado com sucesso!');
+      history.push("/handout");
+    } else {
+      toast.error('Erro ao tentar criar comunicado. Por favor, tente novamente!');
       setLoading(false);
     }
-
-    setLoading(false);
-    history.push("/handout");
   };
 
 
@@ -142,16 +142,6 @@ export default function HandoutCreate() {
           )}
           Criar Comunicado
         </Button>
-
-        {error && (
-          <Typography
-            component="h6"
-            variant="h6"
-            style={{ color: "red", fontWeight: "900", fontSize: "12" }}
-          >
-            Erro ao tentar criar o comunicado. Por favor, tente novamente!
-          </Typography>
-        )}
       </form>
 
       <MenuTab view={view} setView={setView} />

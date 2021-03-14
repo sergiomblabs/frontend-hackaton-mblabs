@@ -8,6 +8,7 @@ import {
   Copyright
 } from '../../components'; 
 
+
 const useStyles = makeStyles((theme) => ({
   "@global": {
     body: {
@@ -39,15 +40,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Channel() {
   const [view, setView] = useState(1);
-
   const classes = useStyles();
 
   return (
     <Container component="main">
       <CssBaseline />
       <Header />
-
-      {/* TODO - Listagem das canais de comunicação  */}
 
       <Box>
         <h1>Canais de Comunicação</h1>

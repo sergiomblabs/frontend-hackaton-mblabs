@@ -1,6 +1,8 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { createMuiTheme , ThemeProvider} from '@material-ui/core/styles';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Routes from './routes';
 import history from './services/history';
@@ -25,6 +27,7 @@ function App() {
     <Router history={history}>
       <ThemeProvider theme={theme}>
         <Routes history={history} />
+        <ToastContainer autoClose={3000} />
       </ThemeProvider>
     </Router>
   );

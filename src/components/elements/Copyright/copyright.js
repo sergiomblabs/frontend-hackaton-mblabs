@@ -9,7 +9,7 @@ export default function Copyright() {
   return (
     <Typography variant="body2" color="secondary" align="center">
       {"Copyright © "}
-      <Link color="secondary" href="https://valeti.com/">
+      <Link color="secondary" href="http://mblabs.com.br/">
         HACKATON MBLABS -
       </Link>{" "}
       {new Date().getFullYear()}

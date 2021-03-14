@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactLoading from "react-loading";
+import { toast } from 'react-toastify';
 
 import { Button, Box, Container, CssBaseline, Link, Typography } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
@@ -63,7 +64,6 @@ export default function SignIn({ match }) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   let disabled = true;
 
   if (
@@ -86,10 +86,10 @@ export default function SignIn({ match }) {
       window.localStorage.setItem('user', JSON.stringify(request.userSaved));
       setLoading(false);
       history.push("/news");
-    } 
-
-    setError(true);
-    setLoading(false);
+    } else {
+      toast.error('Erro ao realizar login. Por favor, tente novamente!');
+      setLoading(false);
+    }
   };
 
   return (
@@ -137,15 +137,6 @@ export default function SignIn({ match }) {
             )}
             Confirmar
           </Button>
-          {error && (
-            <Typography
-              component="h6"
-              variant="h6"
-              style={{ color: "red", fontWeight: "900", fontSize: "12" }}
-            >
-              Erro ao realizar seu login. Por favor, tente novamente!
-            </Typography>
-          )}
         </form>
       </div>
       <Box mt={8}>
